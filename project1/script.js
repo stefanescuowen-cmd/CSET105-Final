@@ -19,6 +19,9 @@ function AddItem(name)
 
 function UpdateOnScreenList()
 {
+    //reset on screen list
+    onScreenList.innerHTML = "";
+
     //add each item to the visible list
     for (let i = 0; i < groceryList.length; i++)
     {
