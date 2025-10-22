@@ -6,6 +6,11 @@
 let groceryList = [];
 const onScreenList = document.getElementById("groceryList");
 
+function AddButtonClicked()
+{
+    let userItem = prompt(`What do you want to add?`);
+    AddItem(userItem);
+}
 function AddItem(name)
 {
     groceryList.push(name);
