@@ -122,6 +122,7 @@ function onAnsweredClicked(value){
     else
         lastAnswerRight = false;
 
+    onSubmitClicked()
 }
 
 
@@ -161,6 +162,7 @@ async function onSubmitClicked(){
 
     //wait to proceed to next question
     await sleep(3000);
+    showNextQuestion()
 
     //show questions again
     document.getElementById("startBlock").style.display = "none";
