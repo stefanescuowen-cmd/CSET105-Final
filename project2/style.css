@@ -28,7 +28,7 @@ h1 {
 
 
 /*question block styling*/
-#questionBlock {
+#questionBlock, #nextQuestionBlock {
     width: 800px;
     margin:5rem auto;
     padding: 2rem;
@@ -74,23 +74,31 @@ h1 {
     box-shadow: 0 0  20px rgba(255, 224, 204, 0.336);
 }
 
-#questionBlock #submit {
+#start {
     margin-top: 1rem;
 
     border-radius: 0;
     padding: .5rem 3rem;
 
-    background-color: oran;
-    color:black;
-    border: 3px solid orangered;
 
-    transition: all .3s;
-}
-
-#questionBlock #submit:hover {
     background-color: orangered;
     color:white;
     border: 3px solid white;
     cursor:pointer;
     box-shadow: 0 0  20px rgba(255, 224, 204, 0.397);
+
+    transition: all .3s;
+}
+
+#start:hover {
+    
+    background-color: white;
+    color:black;
+    border: 3px solid orangered;
+    box-shadow: none;
+}
+
+#nextQuestionBlock p {
+    font-size: 1.2rem;
+    text-transform: uppercase;
 }
