@@ -14,6 +14,7 @@
 
 let score = 0
 let currentQuestion = 0
+let lastAnswerRight = false;
 
 // Questions
 
@@ -118,7 +119,10 @@ function onAnsweredClicked(value){
     if(questions[currentQuestion].options[value] === questions[currentQuestion].answer){
         score++
         Visablescore.innerText = score
+        lastAnswerRight = true;
     }
+    else
+        lastAnswerRight = false;
 
 }
 
@@ -127,7 +131,7 @@ function startGame(){
     // Hide the start button and show the game
     document.getElementById("startBlock").style.display = "none";
     document.getElementById("questionBlock").style.display = "block"
-
+    document.getElementById("nextQuestionBlock").style.display = "none";
 
     // Fill in squares first time
     question.innerText = questions[currentQuestion].question;
@@ -140,8 +144,35 @@ function startGame(){
 }
 
 
-function onSubmitClicked(){
+async function onSubmitClicked(){
 
+    // Show next question block
+    document.getElementById("startBlock").style.display = "none";
+    document.getElementById("questionBlock").style.display = "none"
+    document.getElementById("nextQuestionBlock").style.display = "block";
+
+    // Display incorrect or correct
+    if (lastAnswerRight === true)
+    {
+       document.getElementById("correctness").innerText = "Correct!"
+    }
+    else
+    {
+        document.getElementById("correctness").innerText = "Incorrect!"
+    }
+
+    //wait to proceed to next question
+    await sleep(3000);
+
+    //show questions again
+    document.getElementById("startBlock").style.display = "none";
+    document.getElementById("questionBlock").style.display = "block"
+    document.getElementById("nextQuestionBlock").style.display = "none";
+
+}
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 
@@ -153,4 +184,5 @@ function endOfGame(){
 // Set initial variables
 
 document.getElementById("startBlock").style.display = "block";
-document.getElementById("questionBlock").style.display = "none"
+document.getElementById("questionBlock").style.display = "none";
+document.getElementById("nextQuestionBlock").style.display = "none";
