@@ -112,14 +112,12 @@ function showNextQuestion(){
 }
 
 function onAnsweredClicked(value){
-    console.log(questions[currentQuestion].options[value]);
-    console.log(questions[currentQuestion].answer)
     // Check if this answer is correct
     if(questions[currentQuestion].options[value] === questions[currentQuestion].answer){
         score++
         Visablescore.innerText = score
     }
-
+    
 }
 
 
