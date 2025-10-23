@@ -5,6 +5,10 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+header{
+    margin-top: 20px;
+}
+
 h1{
     text-decoration: underline;
 }
