@@ -124,7 +124,19 @@ function onAnsweredClicked(value){
 
 
 function startGame(){
-    
+    // Hide the start button and show the game
+    document.getElementById("startBlock").style.display = "none";
+    document.getElementById("questionBlock").style.display = "block"
+
+
+    // Fill in squares first time
+    question.innerText = questions[currentQuestion].question;
+
+    for(let i = 0; i < answers.length; i++){
+        
+        answers[i].innerText = questions[currentQuestion].options[i];
+
+    }
 }
 
 
@@ -140,11 +152,5 @@ function endOfGame(){
 
 // Set initial variables
 
-question.innerText = questions[currentQuestion].question;
-
-for(let i = 0; i < answers.length; i++){
-    
-    answers[i].innerText = questions[currentQuestion].options[i];
-
-}
-
+document.getElementById("startBlock").style.display = "block";
+document.getElementById("questionBlock").style.display = "none"
