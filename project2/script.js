@@ -101,6 +101,8 @@ const Visablescore = document.getElementById("score")
 
 function showNextQuestion(){
     
+    currentQuestion++
+    
     question.innerText = questions[currentQuestion].question;
 
     for(let i = 0; i < answers.length; i++){
@@ -108,15 +110,13 @@ function showNextQuestion(){
         answers[i].innerText = questions[currentQuestion].options[i];
 
     }
-    
-    currentQuestion++
 }
 
 function onAnsweredClicked(value){
     // Check if this answer is correct
     if(questions[currentQuestion].options[value] === questions[currentQuestion].answer){
         score++
-        Visablescore.innerText = score
+        Visablescore.innerText = `Score: ${score}`;
         lastAnswerRight = true;
     }
     else
