@@ -5,16 +5,22 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-header{
-
-}
-
 h1{
     text-decoration: underline;
 }
 
-#add-item{
+h3{
+    margin-top: 10px;
+}
+
+#content{
+    display: flex;
+    justify-content: center;
     margin-top: 15px;
+}
+
+#add-item{
+    margin-right: 40px;
     padding: 10px 5px;
     background-color: rgb(65, 65, 255);
     color: white;
@@ -24,6 +30,10 @@ h1{
 
 #add-item:hover{
     background-color: rgb(35, 35, 255);
+}
+
+#view-options{
+    border-radius: 50px;
 }
 
 #groceryList{
