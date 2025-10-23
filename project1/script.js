@@ -36,14 +36,14 @@ function UpdateOnScreenList()
         if (groceryList[i].removed === true)
         {
             newVisibleItem.innerHTML = `
-            <p value = "${i}" onclick="ToggleRemoval(${i})"><s>${groceryList[i]}</s></p>
+            <p value = "${i}" style="cursor:pointer" onclick="ToggleRemoval(${i})"><s>${groceryList[i].name}</s></p>
             `;
             onScreenList.append(newVisibleItem);
         }
         else if (groceryList[i].removed === false)
         {
             newVisibleItem.innerHTML = `
-            <p value = "${i}" onclick="ToggleRemoval(${i})">${groceryList[i]}</p>
+            <p value = "${i}" style="cursor:pointer" onclick="ToggleRemoval(${i})">${groceryList[i].name}</p>
             `;
             onScreenList.append(newVisibleItem);
         }
@@ -54,12 +54,12 @@ function UpdateOnScreenList()
 
 function ToggleRemoval(index)
 {
-    if (groceryList[index].removed = false)
+    if (groceryList[index].removed === false)
     {
         groceryList[index].removed = true;
         UpdateOnScreenList();
     }
-    else if (groceryList[index].removed = true)
+    else if (groceryList[index].removed === true)
     {
         groceryList[index].removed = false;
         UpdateOnScreenList();
