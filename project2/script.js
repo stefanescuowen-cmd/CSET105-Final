@@ -71,7 +71,7 @@ const questions = [
 
     // question #8
     {
-    question: "What is the most popular crypto currenency?",
+    question: "What is the most popular crypto currency?",
     options: ["BitCoin", "Etherium", "DogeCoin", "LitCoin"],
     answer: "BitCoin"
     },
