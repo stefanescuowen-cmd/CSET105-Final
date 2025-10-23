@@ -10,8 +10,11 @@
 // Or come up with your own solution.
 
 
+// Score
+
 let score = 0
 
+// Questions
 
 const questions = [
     
@@ -84,6 +87,8 @@ const questions = [
     options: ["", "", "", ""],
     answer: ""
     },
-    
+
 ];
 
+
+// User option detection
