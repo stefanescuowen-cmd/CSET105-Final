@@ -11,17 +11,19 @@
     <header>
         <h1>10 Question Quiz App</h1>
         <h2>Owen and Caleb's Quiz Project for CSET 105</h2>
+        <p id="score">0</p>
     </header>
     <section id="main">
         <div id="questionBlock">
             <h3 id="questionTitle">How old is Florin?</h3>
             <div id="answers">
-                <button value="1" class="answer" onclick="">Answer 1</button>
-                <button value="2" class="answer" onclick="">Answer 2</button>
-                <button value="3" class="answer" onclick="">Answer 3</button>
-                <button value="4" class="answer" onclick="">Answer 4</button>
+                <button value="0" class="answer" onclick="onAnsweredClicked(this.value)">Answer 1</button>
+                <button value="1" class="answer" onclick="onAnsweredClicked(this.value)">Answer 2</button>
+                <button value="2" class="answer" onclick="onAnsweredClicked(this.value)">Answer 3</button>
+                <button value="3" class="answer" onclick="onAnsweredClicked(this.value)">Answer 4</button>
             </div>
             <button id="submit" onclick="showNextQuestion()">Submit</button>
+            <button id="start" onclick="startGame()">Start Game</button>
         </div>
     </section>
     <footer>

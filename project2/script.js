@@ -94,9 +94,11 @@ const questions = [
 
 // Show next question function
 
+const answers = document.getElementsByClassName("answer");
+const question = document.getElementById("questionTitle");
+const Visablescore = document.getElementById("score")
+
 function showNextQuestion(){
-    const answers = document.getElementsByClassName("answer");
-    const question = document.getElementById("questionTitle");
     
     question.innerText = questions[currentQuestion].question;
 
@@ -105,9 +107,44 @@ function showNextQuestion(){
         answers[i].innerText = questions[currentQuestion].options[i];
 
     }
+    
     currentQuestion++
 }
 
-showNextQuestion();
+function onAnsweredClicked(value){
+    console.log(questions[currentQuestion].options[value]);
+    console.log(questions[currentQuestion].answer)
+    // Check if this answer is correct
+    if(questions[currentQuestion].options[value] === questions[currentQuestion].answer){
+        score++
+        Visablescore.innerText = score
+    }
 
-// User option detection
+}
+
+
+function startGame(){
+    
+}
+
+
+function onSubmitClicked(){
+
+}
+
+
+function endOfGame(){
+
+}
+
+
+// Set initial variables
+
+question.innerText = questions[currentQuestion].question;
+
+for(let i = 0; i < answers.length; i++){
+    
+    answers[i].innerText = questions[currentQuestion].options[i];
+
+}
+
