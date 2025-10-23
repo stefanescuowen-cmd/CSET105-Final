@@ -10,80 +10,104 @@
 // Or come up with your own solution.
 
 
-let score = 0
+// Score
 
+let score = 0
+let currentQuestion = 0
+
+// Questions
 
 const questions = [
     
     // question #1
     {
-    question: "",
-    options: ["", "", "", ""],
-    answer: ""
+    question: "When is Wolfy's Birthday?",
+    options: ["6/7", "7/18", "10/28", "Who is that again?"],
+    answer: "10/28"
     },
 
     // question #2
     {
-    question: "",
-    options: ["", "", "", ""],
-    answer: ""
+    question: "Which keyboard switch type is the quietest?",
+    options: ["red", "brown", "blue", "yellow"],
+    answer: "red"
     },
 
     // question #3
     {
-    question: "",
-    options: ["", "", "", ""],
-    answer: ""
+    question: "How many states are in the U.S.A.?",
+    options: ["67", "10", "48", "50"],
+    answer: "50"
     },
 
     // question #4
     {
-    question: "",
-    options: ["", "", "", ""],
-    answer: ""
+    question: "What Persona does Joker use?",
+    options: ["Orpheus", "Arsen", "Izanagi", "Jack Frost"],
+    answer: "Arsen"
     },
 
     // question #5
     {
-    question: "",
-    options: ["", "", "", ""],
-    answer: ""
+    question: "What year did the original Donkey Kong release in arcades?",
+    options: ["1994", "1981", "1985", "1992"],
+    answer: "1981"
     },
 
     // question #6
     {
-    question: "",
-    options: ["", "", "", ""],
-    answer: ""
+    question: "How many book are in the Bible?",
+    options: ["66", "55", "44", "33"],
+    answer: "66"
     },
 
     // question #7
     {
-    question: "",
-    options: ["", "", "", ""],
-    answer: ""
+    question: "What is the chemical symbol for gold?",
+    options: ["Go", "Gd", "Ag", "Au"],
+    answer: "Au"
     },
 
     // question #8
     {
-    question: "",
-    options: ["", "", "", ""],
-    answer: ""
+    question: "What is the most popular crypto currenency?",
+    options: ["BitCoin", "Etherium", "DogeCoin", "LitCoin"],
+    answer: "BitCoin"
     },
 
     // question #9
     {
-    question: "",
-    options: ["", "", "", ""],
-    answer: ""
+    question: "What does CTC stand for?",
+    options: ["Critical Tech Corporation", "Career & Tech Center", "Corporate Tax Credit", "Crackers & Truffle Cheese"],
+    answer: "Career & Tech Center"
     },
 
     // question #10
     {
-    question: "",
-    options: ["", "", "", ""],
-    answer: ""
+    question: "Who makes iPhone products?",
+    options: ["LG", "Samsung", "Google", "Apple"],
+    answer: "Apple"
     },
-    
+
 ];
 
+
+// Show next question function
+
+function showNextQuestion(){
+    const answers = document.getElementsByClassName("answer");
+    const question = document.getElementById("questionTitle");
+    
+    question.innerText = questions[currentQuestion].question;
+
+    for(let i = 0; i < answers.length; i++){
+        
+        answers[i].innerText = questions[currentQuestion].options[i];
+
+    }
+    currentQuestion++
+}
+
+showNextQuestion();
+
+// User option detection
