@@ -132,7 +132,7 @@ function ToggleRemoval(index)
     else if (groceryList[index].purchased === true)
     {
         groceryList[index].purchased = false;
-        unpurchasedItems.push(groceryList[i]);
+        unpurchasedItems.push(groceryList[index]);
         purchasedItems.splice(index, 1);
         UpdateOnScreenList();   
     }
