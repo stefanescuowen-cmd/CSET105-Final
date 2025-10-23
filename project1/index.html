@@ -8,11 +8,21 @@
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
-    <header></header>
-    <h1>Grocery List</h1>
-    <h3>Owen and Caleb's CSET 105 Final</h3>
+    <header>
+        <h1>Grocery List</h1>
+        <h3>Owen and Caleb's CSET 105 Final</h3>
+    </header>
     
+    <div id="content">
     <button id="add-item" onclick="AddButtonClicked()">Add Item</button>
+
+    <label for=""></label>
+    <select name="view-options" id="view-options" onchange="ChangeItemView(this.value)">
+        <option value="fullList">View all items</option>
+        <option value="purchasedItems">View purchased items</option>
+        <option value="unpurchasedItems">View unpurchased items</option>
+    </select>
+    </div>
     <div id="groceryList"></div>
 
     <script src="script.js"></script>
