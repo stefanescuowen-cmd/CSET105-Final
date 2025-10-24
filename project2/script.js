@@ -101,7 +101,6 @@ const Visablescore = document.getElementById("score")
 
 function showNextQuestion(){
     
-    currentQuestion++
     
     question.innerText = questions[currentQuestion].question;
 
@@ -150,16 +149,30 @@ async function onSubmitClicked(){
     document.getElementById("questionBlock").style.display = "none"
     document.getElementById("nextQuestionBlock").style.display = "block";
 
+    console.log(currentQuestion)
+    console.log(questions.length)
+    
+    currentQuestion++
+
+
     // Display incorrect or correct
-    if (lastAnswerRight === true)
+    if(currentQuestion === questions.length)
+    {
+        document.getElementById("correctness").innerText = "And that's the game!";
+        Visablescore.innerText = `Score: ${score}/${questions.length}`;
+        document.getElementById("restartButton").style.display = "block";
+    }
+
+    else if (lastAnswerRight === true)
     {
        document.getElementById("correctness").innerText = "Correct!"
     }
-    else
-    {
+
+    else{
         document.getElementById("correctness").innerText = "Incorrect!"
     }
 
+    
     //wait to proceed to next question
     await sleep(3000);
     showNextQuestion()
@@ -169,6 +182,10 @@ async function onSubmitClicked(){
     document.getElementById("questionBlock").style.display = "block"
     document.getElementById("nextQuestionBlock").style.display = "none";
 
+}
+
+function reload(){
+    window.location.reload(true);
 }
 
 function sleep(ms) {
