@@ -59,6 +59,7 @@ h3{
 
 #groceryList li{
     text-align: left;
-    margin: 10px 0;
+    margin: 10px 20px;
     cursor: pointer;
+    text-transform: capitalize;
 }
