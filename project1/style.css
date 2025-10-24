@@ -50,4 +50,14 @@ h3{
 
 #groceryList{
     margin-top: 15px;
+    padding: 20px;
+    width: 300px;
+    height: 200px;
+    border: 1px solid #ccc;
+    overflow: auto;
+}
+
+#groceryList p{
+    text-align: left;
+    margin: 10px 0;
 }
