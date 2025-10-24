@@ -104,16 +104,31 @@ function showNextQuestion(){
     
     question.innerText = questions[currentQuestion].question;
 
+    // Create shuffled copy of answers
+    let shuffled = shuffle(questions[currentQuestion].options);
+
     for(let i = 0; i < answers.length; i++){
-        
-        answers[i].innerText = questions[currentQuestion].options[i];
+        answers[i].innerText = shuffled[i];
+
+        answers[i].onclick = function() {
+            onAnsweredClicked(shuffled[i]);
+        }
 
     }
 }
 
-function onAnsweredClicked(value){
+// Shuffle order of answers
+function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
+function onAnsweredClicked(selectedText){
     // Check if this answer is correct
-    if(questions[currentQuestion].options[value] === questions[currentQuestion].answer){
+    if(selectedText === questions[currentQuestion].answer){
         score++
         Visablescore.innerText = `Score: ${score}`;
         lastAnswerRight = true;
@@ -131,12 +146,17 @@ function startGame(){
     document.getElementById("questionBlock").style.display = "block"
     document.getElementById("nextQuestionBlock").style.display = "none";
 
-    // Fill in squares first time
     question.innerText = questions[currentQuestion].question;
+    
+    // Fill in squares first time
+    let shuffled = shuffle(questions[currentQuestion].options);
 
     for(let i = 0; i < answers.length; i++){
         
-        answers[i].innerText = questions[currentQuestion].options[i];
+        answers[i].innerText = shuffled[i];
+        answers[i].onclick = function() {
+            onAnsweredClicked(shuffled[i]);
+        }
 
     }
 }
