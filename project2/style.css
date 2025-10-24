@@ -74,7 +74,7 @@ h1 {
     box-shadow: 0 0  20px rgba(255, 224, 204, 0.336);
 }
 
-#start {
+#start, #restartButton {
     margin-top: 1rem;
 
     border-radius: 0;
@@ -90,7 +90,7 @@ h1 {
     transition: all .3s;
 }
 
-#start:hover {
+#start:hover, #restartButton:hover {
     
     background-color: white;
     color:black;
