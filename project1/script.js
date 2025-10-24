@@ -14,13 +14,21 @@ const onScreenList = document.getElementById("groceryList");
 //when add item is clicked
 function AddButtonClicked()
 {
-    let userItem = prompt(`What do you want to add?`);
+    const input = document.getElementById("item-input");
+
+    //remove any initial spaces
+    let userItem = input.value.trim();
 
     //make sure item they enter is not empty
     if (userItem === "") return;
 
     AddItem(userItem, false);
+
+    //Empty the input box for the next time
+    input.value = "";
+    input.focus();
 }
+
 function AddItem(name, purchased)
 {
     const item = {
@@ -97,4 +105,15 @@ function ChangeItemView(value)
     //else if unpurchased items, then display unpurchased items
     displayingList = value;
     UpdateOnScreenList();
+}
+
+//Add the item if enter is clicked and there is something in the input box
+const input = document.getElementById("item-input");
+if (input !== "")
+{
+    input.addEventListener("keyup", function(event) {
+        if (event.key === "Enter") {
+            AddButtonClicked();
+        }
+    });
 }
