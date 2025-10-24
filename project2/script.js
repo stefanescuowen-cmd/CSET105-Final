@@ -101,18 +101,22 @@ const Visablescore = document.getElementById("score")
 
 function showNextQuestion(){
     
-    
-    question.innerText = questions[currentQuestion].question;
+    typeWriter(question, questions[currentQuestion].question);
 
     // Create shuffled copy of answers
     let shuffled = shuffle(questions[currentQuestion].options);
 
     for(let i = 0; i < answers.length; i++){
         answers[i].innerText = shuffled[i];
+        answers[i].classList.remove("fade-in");
 
         answers[i].onclick = function() {
             onAnsweredClicked(shuffled[i]);
         }
+
+        setTimeout(() => {
+            answers[i].classList.add("fade-in");
+        }, i * 150);
 
     }
 }
@@ -134,7 +138,11 @@ function onAnsweredClicked(selectedText){
         lastAnswerRight = true;
     }
     else
+    {
+        Visablescore.innerText = `Score: ${score}`;
         lastAnswerRight = false;
+    }
+        
 
     onSubmitClicked()
 }
@@ -146,7 +154,7 @@ function startGame(){
     document.getElementById("questionBlock").style.display = "block"
     document.getElementById("nextQuestionBlock").style.display = "none";
 
-    question.innerText = questions[currentQuestion].question;
+    typeWriter(question, questions[currentQuestion].question);
     
     // Fill in squares first time
     let shuffled = shuffle(questions[currentQuestion].options);
@@ -154,9 +162,14 @@ function startGame(){
     for(let i = 0; i < answers.length; i++){
         
         answers[i].innerText = shuffled[i];
+        answers[i].classList.remove("fade-in");
         answers[i].onclick = function() {
             onAnsweredClicked(shuffled[i]);
         }
+
+        setTimeout(() => {
+            answers[i].classList.add("fade-in");
+        }, i * 150);
 
     }
 }
@@ -178,18 +191,22 @@ async function onSubmitClicked(){
     // Display incorrect or correct
     if(currentQuestion === questions.length)
     {
-        document.getElementById("correctness").innerText = "And that's the game!";
+        typeWriter(document.getElementById("correctness"), "You finally made it...");
+        typeWriter(Visablescore, `Score: ${score}/${questions.length}`);
+
+
+        document.getElementById("correctness").innerText = "You finally made it...";
         Visablescore.innerText = `Score: ${score}/${questions.length}`;
         document.getElementById("restartButton").style.display = "block";
     }
 
     else if (lastAnswerRight === true)
     {
-       document.getElementById("correctness").innerText = "Correct!"
+        typeWriter(document.getElementById("correctness"), "Hmm. Seems you got that one.");
     }
 
     else{
-        document.getElementById("correctness").innerText = "Incorrect!"
+        typeWriter(document.getElementById("correctness"), "WRONG! Guess I'll give you another chance...");
     }
 
     
@@ -212,9 +229,20 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+function typeWriter(element, text, speed = 40) {
+    element.innerText = "";
+    element.style.whiteSpace = "pre-wrap";
+    let i = 0;
 
-function endOfGame(){
+    function typing() {
+        if (i < text.length) {
+            element.innerText += text[i];
+            i++;
+            setTimeout(typing, speed);
+        }
+    }
 
+    typing();
 }
 
 
