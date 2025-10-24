@@ -134,16 +134,15 @@ function onAnsweredClicked(selectedText){
     // Check if this answer is correct
     if(selectedText === questions[currentQuestion].answer){
         score++
-        Visablescore.innerText = `Score: ${score}`;
         lastAnswerRight = true;
     }
     else
     {
-        Visablescore.innerText = `Score: ${score}`;
         lastAnswerRight = false;
     }
-        
 
+    typeWriter(Visablescore, `Score: ${score}`);
+    
     onSubmitClicked()
 }
 
@@ -193,10 +192,6 @@ async function onSubmitClicked(){
     {
         typeWriter(document.getElementById("correctness"), "You finally made it...");
         typeWriter(Visablescore, `Score: ${score}/${questions.length}`);
-
-
-        document.getElementById("correctness").innerText = "You finally made it...";
-        Visablescore.innerText = `Score: ${score}/${questions.length}`;
         document.getElementById("restartButton").style.display = "block";
     }
 
