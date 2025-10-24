@@ -15,6 +15,10 @@ const onScreenList = document.getElementById("groceryList");
 function AddButtonClicked()
 {
     let userItem = prompt(`What do you want to add?`);
+
+    //make sure item they enter is not empty
+    if (userItem === null) return;
+
     AddItem(userItem, false);
 }
 function AddItem(name, purchased)
@@ -42,21 +46,23 @@ function UpdateOnScreenList()
     //add each item to the visible list
     for (let i = 0; i < groceryList.length; i++)
     {
-        let newVisibleItem = document.createElement("div");
+        let newVisibleItem = document.createElement("li");
 
+        newVisibleItem.value = i;
+        newVisibleItem.onclick = ToggleRemoval(i);
 
         //if item crossed out, cross it out
         if (groceryList[i].purchased === true && (displayingList === "purchasedItems" || displayingList === "fullList"))
         {
             newVisibleItem.innerHTML = `
-            <p value = "${i}" style="cursor:pointer" onclick="ToggleRemoval(${i})"><s>${groceryList[i].name}</s></p>
+            <s>${groceryList[i].name}</s>
             `;
             onScreenList.append(newVisibleItem);
         }
         else if (groceryList[i].purchased === false && (displayingList === "unpurchasedItems" || displayingList === "fullList"))
         {
             newVisibleItem.innerHTML = `
-            <p value = "${i}" style="cursor:pointer" onclick="ToggleRemoval(${i})">${groceryList[i].name}</p>
+            ${groceryList[i].name}
             `;
             onScreenList.append(newVisibleItem);
         }
