@@ -17,7 +17,7 @@ function AddButtonClicked()
     let userItem = prompt(`What do you want to add?`);
 
     //make sure item they enter is not empty
-    if (userItem === null) return;
+    if (userItem === "") return;
 
     AddItem(userItem, false);
 }
@@ -49,7 +49,9 @@ function UpdateOnScreenList()
         let newVisibleItem = document.createElement("li");
 
         newVisibleItem.value = i;
-        newVisibleItem.onclick = ToggleRemoval(i);
+        newVisibleItem.onclick = function() {
+            ToggleRemoval(i);
+        }
 
         //if item crossed out, cross it out
         if (groceryList[i].purchased === true && (displayingList === "purchasedItems" || displayingList === "fullList"))
