@@ -17,6 +17,10 @@
             <button id="start" onclick="startGame()">Start Game</button>
         </div>
 
+        <div id="timerBarContainer">
+            <div id="timerBar"></div>
+        </div>
+
         <div id="nextQuestionBlock">
             <p id="correctness">Incorrect!</p>
             <p id="score">0</p>
@@ -24,13 +28,17 @@
         </div>
 
         <div id="questionBlock">
-            <h3 id="questionTitle">How old is Florin?</h3>
+            <h3 id="questionTitle">How old is answer?</h3>
             <div id="answers">
                 <button value="0" class="answer" onclick="onAnsweredClicked(this.value)">Answer 1</button>
                 <button value="1" class="answer" onclick="onAnsweredClicked(this.value)">Answer 2</button>
                 <button value="2" class="answer" onclick="onAnsweredClicked(this.value)">Answer 3</button>
                 <button value="3" class="answer" onclick="onAnsweredClicked(this.value)">Answer 4</button>
             </div>
+        </div>
+
+        <div id="progressBarContainer">
+            <div id="progressBar"></div>
         </div>
     </section>
     <footer>
