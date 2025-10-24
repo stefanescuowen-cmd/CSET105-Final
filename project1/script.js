@@ -54,14 +54,16 @@ function UpdateOnScreenList()
         }
 
         //if item crossed out, cross it out
-        if (groceryList[i].purchased === true && (displayingList === "purchasedItems" || displayingList === "fullList"))
+        if (groceryList[i].purchased === true && (displayingList === "fullList"))
         {
             newVisibleItem.innerHTML = `
             <s>${groceryList[i].name}</s>
             `;
             onScreenList.append(newVisibleItem);
         }
-        else if (groceryList[i].purchased === false && (displayingList === "unpurchasedItems" || displayingList === "fullList"))
+        //dont cross items out if they arent purchased or are in the purchased items view 
+        else if ((groceryList[i].purchased === false && (displayingList === "unpurchasedItems" || displayingList === "fullList")) 
+            || (groceryList[i].purchased === true && (displayingList === "purchasedItems")))
         {
             newVisibleItem.innerHTML = `
             ${groceryList[i].name}
