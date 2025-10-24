@@ -90,6 +90,18 @@ h1 {
     transition: all .3s;
 }
 
+#restartButton {
+    display: none;
+}
+
+#nextQuestionBlock {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
 #start:hover, #restartButton:hover {
     
     background-color: white;

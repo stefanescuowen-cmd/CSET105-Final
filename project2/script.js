@@ -147,7 +147,7 @@ async function onSubmitClicked(){
     // Show next question block
     document.getElementById("startBlock").style.display = "none";
     document.getElementById("questionBlock").style.display = "none"
-    document.getElementById("nextQuestionBlock").style.display = "block";
+    document.getElementById("nextQuestionBlock").style.display = "flex";
 
     console.log(currentQuestion)
     console.log(questions.length)
