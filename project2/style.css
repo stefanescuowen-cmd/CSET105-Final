@@ -136,3 +136,34 @@ button {
 #nextQuestionBlock p {
     text-transform: uppercase;
 }
+
+/*progress bar*/
+#progressBarContainer, #timerBarContainer{
+    width: 800px;
+    height: 15px;
+    background-color: rgb(60, 20, 5);
+    border: 2px solid rgb(255, 223, 163);
+}
+
+#progressBarContainer {
+    margin: -4rem auto 3rem auto;
+
+}
+
+#timerBarContainer {
+    margin: -1rem auto -3rem auto;
+}
+
+#progressBar, #timerBar {
+    height: 100%;
+    width: 100%;
+    transition: width 0.5s ease;
+}
+
+#timerBar {
+    background-color: orangered;
+}
+
+#progressBar {
+    background-color: yellowgreen;
+}

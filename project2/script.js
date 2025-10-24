@@ -15,6 +15,7 @@
 let score = 0
 let currentQuestion = 0
 let lastAnswerRight = false;
+let timerOut = false;
 
 // Questions
 
@@ -119,6 +120,8 @@ function showNextQuestion(){
         }, i * 150);
 
     }
+
+    decreaseTimer();
 }
 
 // Shuffle order of answers
@@ -141,7 +144,6 @@ function onAnsweredClicked(selectedText){
         lastAnswerRight = false;
     }
 
-    typeWriter(Visablescore, `Score: ${score}`);
     
     onSubmitClicked()
 }
@@ -152,6 +154,12 @@ function startGame(){
     document.getElementById("startBlock").style.display = "none";
     document.getElementById("questionBlock").style.display = "block"
     document.getElementById("nextQuestionBlock").style.display = "none";
+    document.getElementById("progressBarContainer").style.display = "block";
+    document.getElementById("timerBarContainer").style.display = "block";
+
+    updateProgressBar();
+
+    decreaseTimer();
 
     typeWriter(question, questions[currentQuestion].question);
     
@@ -180,12 +188,11 @@ async function onSubmitClicked(){
     document.getElementById("startBlock").style.display = "none";
     document.getElementById("questionBlock").style.display = "none"
     document.getElementById("nextQuestionBlock").style.display = "flex";
-
-    console.log(currentQuestion)
-    console.log(questions.length)
+    document.getElementById("timerBarContainer").style.display = "none";
     
     currentQuestion++
 
+    updateProgressBar();
 
     // Display incorrect or correct
     if(currentQuestion === questions.length)
@@ -195,15 +202,26 @@ async function onSubmitClicked(){
         document.getElementById("restartButton").style.display = "block";
     }
 
+    else if (timerOut === true)
+    {
+        typeWriter(document.getElementById("correctness"), "Times up! Nothing for you this time.");
+        
+        typeWriter(Visablescore, `Score: ${score}`);
+    }
+
     else if (lastAnswerRight === true)
     {
         typeWriter(document.getElementById("correctness"), "Hmm. Seems you got that one.");
+        
+        typeWriter(Visablescore, `Score: ${score}`);
     }
 
     else{
         typeWriter(document.getElementById("correctness"), "WRONG! Guess I'll give you another chance...");
+        typeWriter(Visablescore, `Score: ${score}`);
     }
 
+    timerOut = false;
     
     //wait to proceed to next question
     await sleep(3000);
@@ -213,6 +231,8 @@ async function onSubmitClicked(){
     document.getElementById("startBlock").style.display = "none";
     document.getElementById("questionBlock").style.display = "block"
     document.getElementById("nextQuestionBlock").style.display = "none";
+    document.getElementById("timerBarContainer").style.display = "block";
+    document.getElementById("timerBar").style.width = `100%`;
 
 }
 
@@ -220,9 +240,6 @@ function reload(){
     window.location.reload(true);
 }
 
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
 
 function typeWriter(element, text, speed = 40) {
     element.innerText = "";
@@ -241,8 +258,46 @@ function typeWriter(element, text, speed = 40) {
 }
 
 
+// Update progress bar value
+function updateProgressBar()
+{
+    let progress = (currentQuestion / questions.length) * 100;
+    document.getElementById("progressBar").style.width = `${progress}%`;
+}
+
+async function decreaseTimer()
+{
+    let time = 30;
+    let percent = 100;
+    
+    document.getElementById("timerBar").style.width = `${percent}%`;
+
+    while(percent >= 0)
+    {
+        await sleep(50);
+        time -= 0.1;
+
+        percent = (time / 30) * 100;
+        document.getElementById("timerBar").style.width = `${percent}%`;
+
+        if (document.getElementById("timerBarContainer").style.display === "none") return;
+    }
+
+    //Times up logic
+    timerOut = true;
+    onSubmitClicked();
+}
+
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+
 // Set initial variables
 
 document.getElementById("startBlock").style.display = "block";
 document.getElementById("questionBlock").style.display = "none";
 document.getElementById("nextQuestionBlock").style.display = "none";
+document.getElementById("progressBarContainer").style.display = "none";
+document.getElementById("timerBarContainer").style.display = "none";
