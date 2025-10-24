@@ -57,7 +57,8 @@ h3{
     overflow: auto;
 }
 
-#groceryList p{
+#groceryList li{
     text-align: left;
     margin: 10px 0;
+    cursor: pointer;
 }
