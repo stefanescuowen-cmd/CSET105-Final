@@ -5,6 +5,14 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
 header{
     margin-top: 20px;
 }
@@ -42,4 +50,15 @@ h3{
 
 #groceryList{
     margin-top: 15px;
+    padding: 20px;
+    width: 300px;
+    height: 200px;
+    border: 1px solid #ccc;
+    overflow: auto;
+}
+
+#groceryList li{
+    text-align: left;
+    margin: 10px 0;
+    cursor: pointer;
 }
