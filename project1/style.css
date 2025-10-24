@@ -5,6 +5,14 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
 header{
     margin-top: 20px;
 }
