@@ -11,6 +11,7 @@ body{
     justify-content: center;
     height: 100vh;
     flex-direction: column;
+    background-color: #B3B3B3;
 }
 
 header{
@@ -28,4 +29,20 @@ h3{
 a{
     display: flex;
     margin: 15px;
+    text-decoration: none;
+    color: white;
+    padding: 20px;
+    background-color: rgb(65, 65, 255);
+    border-radius: 50px;
+    transition: background 0.2s ease;
+    box-shadow: 0 4px 0 rgb(31, 31, 122);
+}
+
+a:hover{
+    background-color: rgb(35, 35, 255);
+}
+
+a:active{
+    transform: translateY(3px);
+    box-shadow: 0 1px 0 rgb(31, 31, 122);
 }
