@@ -26,6 +26,29 @@ h3{
     margin-top: 10px;
 }
 
+.go-back{
+    position: absolute;
+    left: 50px;
+    top: 50px;
+    text-decoration: none;
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 50%;
+    color: white;
+    background-color: rgb(65, 65, 255);
+    transition: background 0.2s ease;
+    box-shadow: 0 4px 0 rgb(31, 31, 122);
+}
+
+.go-back:hover{
+    background-color: rgb(35, 35, 255);
+}
+
+.go-back:active{
+    transform: translateY(3px);
+    box-shadow: 0 1px 0 rgb(31, 31, 122);
+}
+
 input{
     width: 300px;
     text-align: left;

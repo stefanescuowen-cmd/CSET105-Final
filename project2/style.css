@@ -35,6 +35,29 @@ h3, p {
     font-size: 2rem;
 }
 
+.go-back{
+    position: absolute;
+    left: 50px;
+    top: 50px;
+    text-decoration: none;
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 50%;
+    color: white;
+    background-color: orangered;
+    transition: background 0.2s ease;
+    box-shadow: 0 4px 0 rgb(140, 38, 0);
+}
+
+.go-back:hover{
+    background-color: rgb(195, 52, 0);
+}
+
+.go-back:active{
+    transform: translateY(3px);
+    box-shadow: 0 1px 0 rgb(181, 48, 0);
+}
+
 button {
     font-family: "New Rocker", Arial, Helvetica, sans-serif;
     font-size: 20px;
