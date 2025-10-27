@@ -105,4 +105,35 @@ input{
     margin: 10px 20px;
     cursor: pointer;
     text-transform: capitalize;
+    position: relative;
+    padding-right: 30px;
+}
+
+.btnContainer {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    white-space: nowrap;
+}
+
+.editBtn, .removeBtn {
+    display: none;
+    margin-left: 5px;
+    cursor: pointer;
+    background-color: #667;
+    border: none;
+    border-radius: 3px;
+    font-size: 12px;
+    padding: 2px 5px;
+    color:white;
+}
+
+.removeBtn {
+    background-color: red;
+}
+
+#groceryList li:hover .removeBtn,
+#groceryList li:hover .editBtn {
+    display: inline;
 }

@@ -32,6 +32,7 @@ function AddButtonClicked()
 function AddItem(name, purchased)
 {
     const item = {
+        id: Date.now(),
         name: name,
         purchased: purchased
     };
@@ -56,46 +57,70 @@ function UpdateOnScreenList()
     {
         let newVisibleItem = document.createElement("li");
 
-        newVisibleItem.value = i;
-        newVisibleItem.onclick = function() {
-            ToggleRemoval(i);
-        }
+        const thisItem = groceryList[i];
+        const thisId = thisItem.id;
+        newVisibleItem.value = thisId;
 
         //if item crossed out, cross it out
-        if (groceryList[i].purchased === true && (displayingList === "fullList"))
+        if (thisItem.purchased === true && (displayingList === "fullList"))
         {
             newVisibleItem.innerHTML = `
-            <s>${groceryList[i].name}</s>
+            <span class="itemText" data-id="${thisId}">
+                <s>${thisItem.name}</s>
+            </span>
+            <span class="btnContainer">
+                <button class="editBtn" onclick="EditItem(${thisId})">Edit</button>
+                <button class="removeBtn" onclick="RemoveItem(${thisId})">X</button>
+            </span>
             `;
             onScreenList.append(newVisibleItem);
         }
         //dont cross items out if they arent purchased or are in the purchased items view 
-        else if ((groceryList[i].purchased === false && (displayingList === "unpurchasedItems" || displayingList === "fullList")) 
-            || (groceryList[i].purchased === true && (displayingList === "purchasedItems")))
+        else if ((thisItem.purchased === false && (displayingList === "unpurchasedItems" || displayingList === "fullList")) 
+            || (thisItem.purchased === true && (displayingList === "purchasedItems")))
         {
             newVisibleItem.innerHTML = `
-            ${groceryList[i].name}
+            <span class="itemText" data-id="${thisId}">
+                ${thisItem.name}
+            </span>
+            <span class="btnContainer">
+                <button class="editBtn" onclick="EditItem(${thisId})">Edit</button>
+                <button class="removeBtn" onclick="RemoveItem(${thisId})">X</button>
+            </span>
             `;
             onScreenList.append(newVisibleItem);
         }
     }
+
+    document.querySelectorAll(".itemText").forEach(text => {
+        text.addEventListener("click", () => {
+            ToggleRemoval(Number(text.dataset.id));
+        });
+    });
+
+    document.querySelectorAll(".editBtn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            EditItem(Number(btn.dataset.id));
+        });
+    });
+
+    document.querySelectorAll(".removeBtn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            RemoveItem(Number(btn.dataset.id));
+        });
+    });
     
 }
 
-function ToggleRemoval(index)
+function ToggleRemoval(id)
 {
-    //if adding item, adjust lists accordingly
-    if (groceryList[index].purchased === false)
-    {
-        groceryList[index].purchased = true;
-        UpdateOnScreenList();
-    }
-    //if removing purchased status, then adjust lists accordingly
-    else if (groceryList[index].purchased === true)
-    {
-        groceryList[index].purchased = false;
-        UpdateOnScreenList();   
-    }
+    const thisItem = groceryList.find(item => item.id === id);
+    if (thisItem === null) return;
+
+    //invert purchased status
+    thisItem.purchased = !thisItem.purchased;
+    
+    UpdateOnScreenList();   
 }
 
 function ChangeItemView(value)
@@ -105,6 +130,30 @@ function ChangeItemView(value)
     //else if unpurchased items, then display unpurchased items
     displayingList = value;
     UpdateOnScreenList();
+}
+
+//remove the item from the grocery list entirely
+function RemoveItem(id) {
+    const itemToRemove = groceryList.findIndex(item => item.id === id);
+    if (itemToRemove !== -1)
+    {
+        groceryList.splice(itemToRemove, 1);
+        
+        UpdateOnScreenList();
+    }
+
+}
+
+//allows for editing the item
+function EditItem(id) {
+    const item = groceryList.find(item => item.id === id);
+    if (item === null) return;
+
+    const newName = prompt("Edit item name:", item.name);
+    if (newName && newName.trim() !== "") {
+        item.name = newName.trim();
+        UpdateOnScreenList();
+    }
 }
 
 //Add the item if enter is clicked and there is something in the input box
@@ -117,3 +166,4 @@ if (input !== "")
         }
     });
 }
+
