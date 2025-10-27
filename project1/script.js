@@ -144,17 +144,51 @@ function RemoveItem(id) {
 
 }
 
+
 //allows for editing the item
 function EditItem(id) {
     const item = groceryList.find(item => item.id === id);
     if (item === null) return;
 
-    const newName = prompt("Edit item name:", item.name);
-    if (newName && newName.trim() !== "") {
-        item.name = newName.trim();
+    const li = [...document.querySelectorAll("#groceryList li")].find(el => el.querySelector(".itemText")?.dataset.id == id);
+    if (li === null) return;
+
+    const textSpan = li.querySelector(".itemText");
+    const btnContainer = li.querySelector(".btnContainer");
+    
+    //make input box over text
+    const input = document.createElement("input");
+    input.type = "text";
+    input.value = item.name;
+    input.className = "editInput";
+
+    //replace text with field
+    textSpan.replaceWith(input);
+
+    //remove purchase toggle behavior
+    input.focus();
+
+    //swap the buttons to just have a confirm button
+    btnContainer.innerHTML = `<button class="confirmBtn">Confirm</button>`;
+
+    //confirm button functionality
+    btnContainer.querySelector(".confirmBtn").addEventListener("click", () => {
+        const newValue = input.value.trim();
+        if (newValue !== "") item.name = newValue;
         UpdateOnScreenList();
-    }
+    })
+
+    //pressing enter also confirms
+    input.addEventListener("keypress", e => {
+        if (e.key === "Enter") {
+            const newValue = input.value.trim();
+            if (newValue !== "") item.name = newValue;
+            UpdateOnScreenList();
+        }
+    })
 }
+
+
 
 //Add the item if enter is clicked and there is something in the input box
 const input = document.getElementById("item-input");
