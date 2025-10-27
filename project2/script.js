@@ -17,6 +17,11 @@ let currentQuestion = 0
 let lastAnswerRight = false;
 let timerOut = false;
 
+// Quiz time tracker
+
+let quizStartTime = null;
+let quizEndTime = null;
+
 // Questions
 
 const questions = [
@@ -150,6 +155,9 @@ function onAnsweredClicked(selectedText){
 
 
 function startGame(){
+    // Start the timer when quiz begins
+    quizStartTime = new Date();
+
     // Hide the start button and show the game
     document.getElementById("startBlock").style.display = "none";
     document.getElementById("questionBlock").style.display = "block"
@@ -197,8 +205,19 @@ async function onSubmitClicked(){
     // Display incorrect or correct
     if(currentQuestion === questions.length)
     {
+        // Record when quiz ends
+        quizEndTime = new Date();
+
         typeWriter(document.getElementById("correctness"), "You finally made it...");
         typeWriter(Visablescore, `Score: ${score}/${questions.length}`);
+
+        let totalTime = Math.floor((quizEndTime - quizStartTime) / 1000);
+        let minutes = Math.floor(totalTime / 60);
+        let seconds = totalTime % 60;
+        let timeMessage = `Total time: ${minutes}m ${seconds}s`
+
+        typeWriter(document.getElementById("timeDisplay"), timeMessage);
+
         document.getElementById("restartButton").style.display = "block";
     }
 
