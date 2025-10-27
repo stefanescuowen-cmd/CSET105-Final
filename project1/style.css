@@ -121,23 +121,47 @@ input{
     overflow: auto;
     transition: background 0.2s ease;
     box-shadow: 0 4px 0 #424242;
+    list-style-type: disc;
 }
 
 #groceryList li{
-    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin: 10px 20px;
     cursor: pointer;
     text-transform: capitalize;
-    position: relative;
-    padding-right: 30px;
+    word-wrap: break-word;
+    padding-right: 20px;
+    list-style-position: inside;
+    background-color: none;
+}
+
+#groceryList li:before {
+    content: "";
+    border-radius: 50%;
+    width: 8px;
+    height: 8px;
+    background: #000;
+    margin-right:10px;
+}
+
+#groceryList li:hover {
+    background-color: #f5f5f5;
+}
+
+.itemText {
+    flex: 1;
+    margin-right: 10px;
+    word-break: break-word;
+    
+    text-align: left;
 }
 
 .btnContainer {
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    white-space: nowrap;
+    flex-shrink: 0;
+    display: flex;
+    gap: 5px;
 }
 
 .editBtn, .removeBtn {
@@ -159,4 +183,24 @@ input{
 #groceryList li:hover .removeBtn,
 #groceryList li:hover .editBtn {
     display: inline;
+}
+
+.editInput {
+    width: calc(100% - 80px);
+    padding: 2px;
+    font-size: 14px;
+    font-family: inherit;
+    border: 1px solid #aaa;
+    border-radius: 3px;
+}
+
+.confirmBtn {
+    cursor: pointer;
+    background-color: green;
+    color:white;
+    border:none;
+    border-radius: 3px;
+    font-size: 12px;
+    padding: 2px 5px;
+    margin-left: 10px;
 }
