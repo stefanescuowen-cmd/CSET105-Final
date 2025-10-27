@@ -50,7 +50,6 @@ input{
     color: white;
     border-radius: 50px;
     border: none;
-    border-radius: 6px;
     cursor: pointer;
     transition: background 0.2s ease;
     box-shadow: 0 4px 0 rgb(31, 31, 122);
@@ -63,7 +62,6 @@ input{
 #add-item:active{
     transform: translateY(3px);
     box-shadow: 0 1px 0 rgb(31, 31, 122);
-    background-color: rgb(35, 35, 255);
 }
 
 #view-options{
